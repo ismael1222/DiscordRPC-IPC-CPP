@@ -6,7 +6,7 @@
 <summary>
 Minimum for it to work
 </summary>
-```
+```c_cpp
 #include "DiscordRPC.hpp"
 void main(){
         DiscordRPC RPC(appID); //get appID from https://discord.com/developers/applications
