@@ -9,12 +9,9 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 //colors
-#define RESETSTYLE   "\033[0m"
-#define BOLD    "\033[1m"
-#define YELLOW  "\033[1;33m"
 #define ORANGE  "\033[38;2;255;180;0m"
 // ------------------ constructor / destructor ------------------
-DiscordRPC::DiscordRPC(const std::string& cid)
+DiscordRPC::DiscordRPC(const std::string& cid) 
     : client_id(cid), nonstop(true) {}
 // ------------------ stop rpc loop ------------------
 void DiscordRPC::stop() {
@@ -33,7 +30,6 @@ int64_t now_ms() {
 //if non-defined values are passed.
 void validateActivity(const Activity& act) {
     if (act.name.empty()) {
-        std::cout<<act.name<<" THATS THE NAME";
         throw std::invalid_argument("Invalid activity: 'name' is required");
     }
     if (act.type < 0 || act.type > 4) {
@@ -225,7 +221,6 @@ void DiscordRPC::run(int intervalMs, bool retry, int retryDelayMs) {
             }
             continue; // reintentar
         }
-        std::cout << "Discord response: " << response.dump(4) << std::endl;
         if (onHandshake) {
             try {
                 onHandshake();
@@ -240,7 +235,6 @@ void DiscordRPC::run(int intervalMs, bool retry, int retryDelayMs) {
                 {"args", {{"pid", (int)getpid()}, {"activity", buildActivityPayload()}}},
                 {"nonce", std::to_string(std::chrono::steady_clock::now().time_since_epoch().count())}
             };
-            std::cout<<"Payload:\n"<<activityPayload;
             if (!sendJSON(sock, 1, activityPayload)) {
                 if (onError) {
                     try {
