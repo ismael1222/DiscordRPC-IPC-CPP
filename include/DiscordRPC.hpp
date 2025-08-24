@@ -124,9 +124,9 @@ struct Activity {
     std::optional<std::vector<Button>> buttons;
 };
 struct DiscordRPCConfig {
-    int intervalMs = 15*1000;      // default poll interval
-    bool retry = true;           // retry enabled by default
-    int retryDelayMs = 5*1000;     // default retry delay
+    int intervalMs = 15*1000;     
+    bool retry = true;           
+    int retryDelayMs = 5*1000; 
 };
 class DiscordRPC {
 public:
@@ -138,8 +138,8 @@ public:
     std::function<void()> onHandshake;
     std::function<void()> onActivitySet;
     std::function<void(const std::string&)> onError;
-    void run (int intervalMs, bool retry = true, int retryDelayMs = 5000);    // blocking
-    void start(int intervalMs, bool retry = true, int retryDelayMs = 5000);  // non-blocking
+    void run (int intervalMs, bool retry = true, int retryDelayMs = 5000);    //blocking
+    void start(int intervalMs, bool retry = true, int retryDelayMs = 5000);  //non-blocking
     void stop ();
     void setActivity(const Activity& act);
     // Config setters
