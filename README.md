@@ -2,15 +2,17 @@
 
 ## Examples of use
 
-<details>
-<summary>
-Minimum for it to work
-</summary>
-```c_cpp
+### Bare minimum
+
+```cpp
 #include "DiscordRPC.hpp"
-void main(){
-        DiscordRPC RPC(appID); //get appID from https://discord.com/developers/applications
-        Activity act;
-        act.type = 0;
+int main(){
+    //get appID from https://discord.com/developers/applications
+    std::string appID = "0000000000000000000";
+    DiscordRPC RPC(appID);
+    Activity act;
+    RPC.setActivity(act);
+    RPC.run();
+    return 0;
+}
 ```
-</details>
